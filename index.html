@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voucher Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ငါ့ဆိုင် (My Shop)</h1>
+        <p style="text-align: center; color: #666; margin-top: -15px;">Skincare & Tech Products</p>
+        
+        <div class="input-section">
+            <div class="form-group">
+                <label for="customerName">Customer Name:</label>
+                <input type="text" id="customerName" placeholder="Enter customer name">
+            </div>
+            
+            <div class="items-section">
+                <h3>Items</h3>
+                <div id="itemsContainer">
+                    <div class="item-row">
+                        <select class="item-cat">
+                            <option value="Tech">Tech</option>
+                            <option value="Skincare">Skincare</option>
+                        </select>
+                        <input type="text" class="item-name" placeholder="Item name">
+                        <input type="number" class="item-qty" placeholder="Qty" value="1">
+                        <input type="number" class="item-price" placeholder="Price">
+                        <button class="remove-btn" onclick="removeItem(this)">×</button>
+                    </div>
+                </div>
+                <button id="addItemBtn" onclick="addItem()">+ Add Item</button>
+            </div>
+            
+            <button id="generateBtn" onclick="generateVoucher()">Generate Voucher</button>
+        </div>
+
+        <div id="voucherOutput" class="voucher-preview hidden">
+            <div id="printableVoucher" class="voucher-box">
+                <div class="voucher-header">
+                    <h2 style="margin-bottom: 5px;">ငါ့ဆိုင် (My Shop)</h2>
+                    <p style="font-size: 0.9em; margin-top: 0;">Skincare & Tech Products</p>
+                    <hr>
+                    <h3 style="margin-top: 10px;">RECEIPT</h3>
+                    <p id="vDate"></p>
+                </div>
+                <div class="voucher-info">
+                    <p><strong>Customer:</strong> <span id="vCustomer"></span></p>
+                </div>
+                <table id="vTable">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vBody"></tbody>
+                </table>
+                <div class="voucher-total">
+                    <h3>Total: <span id="vTotal"></span> Ks</h3>
+                </div>
+            </div>
+            <button onclick="window.print()">Print Voucher</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
