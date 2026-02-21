@@ -12,9 +12,15 @@
         <p style="text-align: center; color: #666; margin-top: -15px;">Skincare & Tech Products</p>
         
         <div class="input-section">
-            <div class="form-group">
-                <label for="customerName">Customer Name:</label>
-                <input type="text" id="customerName" placeholder="Enter customer name">
+            <div class="form-group" style="display: flex; gap: 10px;">
+                <div style="flex: 2;">
+                    <label for="customerName">Customer Name:</label>
+                    <input type="text" id="customerName" placeholder="Enter customer name">
+                </div>
+                <div style="flex: 1;">
+                    <label for="customerPhone">Ph No:</label>
+                    <input type="text" id="customerPhone" placeholder="Enter phone number">
+                </div>
             </div>
             
             <div class="items-section">
@@ -46,6 +52,7 @@
                 </div>
                 <div class="voucher-info">
                     <p><strong>Customer:</strong> <span id="vCustomer"></span></p>
+                    <p><strong>Ph No:</strong> <span id="vPhone"></span></p>
                 </div>
                 <table id="vTable">
                     <thead>
@@ -62,6 +69,9 @@
                 </table>
                 <div class="voucher-total">
                     <h3>Total: <span id="vTotal"></span> Ks</h3>
+                </div>
+                <div class="voucher-footer" style="text-align: center; margin-top: 30px; border-top: 1px solid #eee; padding-top: 10px;">
+                    <p><em>Thank You For Shopping With Us</em></p>
                 </div>
             </div>
             <button onclick="window.print()">Print Voucher</button>

@@ -20,6 +20,7 @@ function removeItem(btn) {
 
 function generateVoucher() {
     const customer = document.getElementById('customerName').value;
+    const phone = document.getElementById('customerPhone').value;
     const itemNos = document.getElementsByClassName('item-no');
     const itemNames = document.getElementsByClassName('item-name');
     const colors = document.getElementsByClassName('item-color');
@@ -53,6 +54,7 @@ function generateVoucher() {
     }
     
     document.getElementById('vCustomer').innerText = customer || 'Walk-in Customer';
+    document.getElementById('vPhone').innerText = phone || '-';
     document.getElementById('vDate').innerText = new Date().toLocaleDateString();
     document.getElementById('vBody').innerHTML = tableBody;
     document.getElementById('vTotal').innerText = total.toLocaleString();
