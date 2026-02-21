@@ -19,7 +19,7 @@ h1 { text-align: center; color: #333; }
 input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
 
 .item-row { display: flex; gap: 5px; margin-bottom: 5px; align-items: center; width: 100%; }
-.item-no { width: 45px; flex-shrink: 0; text-align: center; }
+.item-no { width: 38px; flex-shrink: 0; text-align: center; padding: 8px 2px; }
 .item-name { flex-grow: 1; min-width: 100px; }
 .item-qty { width: 45px; flex-shrink: 0; text-align: center; }
 .item-price { width: 70px; flex-shrink: 0; }
