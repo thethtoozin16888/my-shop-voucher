@@ -16,14 +16,13 @@ body {
 h1 { text-align: center; color: #333; }
 
 .form-group { margin-bottom: 15px; }
-input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
-input[type="text"] { width: calc(100% - 18px); }
+input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
 
-.item-row { display: flex; gap: 5px; margin-bottom: 5px; align-items: center; }
-.item-cat { width: 85px; padding: 8px 2px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9em; }
-.item-name { flex: 1; min-width: 0; }
-.item-qty { width: 55px; text-align: center; }
-.item-price { width: 80px; }
+.item-row { display: flex; gap: 5px; margin-bottom: 5px; align-items: center; width: 100%; }
+.item-cat { width: 80px; flex-shrink: 0; padding: 8px 2px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85em; }
+.item-name { flex-grow: 1; min-width: 100px; }
+.item-qty { width: 45px; flex-shrink: 0; text-align: center; }
+.item-price { width: 70px; flex-shrink: 0; }
 
 button {
     padding: 10px 15px;
