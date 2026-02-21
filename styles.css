@@ -19,11 +19,11 @@ h1 { text-align: center; color: #333; }
 input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
 input[type="text"] { width: calc(100% - 18px); }
 
-.item-row { display: flex; gap: 5px; margin-bottom: 5px; }
-.item-cat { flex: 1.5; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
-.item-name { flex: 3; }
-.item-qty { flex: 1; }
-.item-price { flex: 2; }
+.item-row { display: flex; gap: 5px; margin-bottom: 5px; align-items: center; }
+.item-cat { width: 85px; padding: 8px 2px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9em; }
+.item-name { flex: 1; min-width: 0; }
+.item-qty { width: 55px; text-align: center; }
+.item-price { width: 80px; }
 
 button {
     padding: 10px 15px;
