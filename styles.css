@@ -20,7 +20,8 @@ input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: bo
 
 .item-row { display: flex; gap: 5px; margin-bottom: 5px; align-items: center; width: 100%; }
 .item-no { width: 38px; flex-shrink: 0; text-align: center; padding: 8px 2px; }
-.item-name { flex-grow: 1; min-width: 100px; }
+.item-name { flex-grow: 2; min-width: 80px; }
+.item-color { flex-grow: 1; min-width: 60px; }
 .item-qty { width: 45px; flex-shrink: 0; text-align: center; }
 .item-price { width: 70px; flex-shrink: 0; }
 
@@ -56,6 +57,7 @@ button {
 
 table { width: 100%; border-collapse: collapse; margin: 15px 0; }
 th, td { border-bottom: 1px solid #eee; padding: 8px; text-align: left; }
+th:nth-child(4), td.qty-col { text-align: center; }
 .voucher-total { text-align: right; }
 
 @media print {
