@@ -3,10 +3,6 @@ function addItem() {
     const row = document.createElement('div');
     row.className = 'item-row';
     row.innerHTML = `
-        <select class="item-cat">
-            <option value="Tech">Tech</option>
-            <option value="Skincare">Skincare</option>
-        </select>
         <input type="text" class="item-name" placeholder="Item name">
         <input type="number" class="item-qty" placeholder="Qty" value="1">
         <input type="number" class="item-price" placeholder="Price">
@@ -21,7 +17,6 @@ function removeItem(btn) {
 
 function generateVoucher() {
     const customer = document.getElementById('customerName').value;
-    const cats = document.getElementsByClassName('item-cat');
     const itemNames = document.getElementsByClassName('item-name');
     const qtys = document.getElementsByClassName('item-qty');
     const prices = document.getElementsByClassName('item-price');
@@ -30,7 +25,6 @@ function generateVoucher() {
     let tableBody = '';
     
     for (let i = 0; i < itemNames.length; i++) {
-        const cat = cats[i].value;
         const name = itemNames[i].value;
         const qty = parseFloat(qtys[i].value) || 0;
         const price = parseFloat(prices[i].value) || 0;
@@ -39,7 +33,7 @@ function generateVoucher() {
         if (name) {
             tableBody += `
                 <tr>
-                    <td>[${cat}] ${name}</td>
+                    <td>${name}</td>
                     <td>${qty}</td>
                     <td>${price}</td>
                     <td>${subtotal}</td>
