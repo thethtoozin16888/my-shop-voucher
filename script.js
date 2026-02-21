@@ -33,6 +33,7 @@ function generateVoucher() {
         if (name) {
             tableBody += `
                 <tr>
+                    <td>${i + 1}</td>
                     <td>${name}</td>
                     <td>${qty}</td>
                     <td>${price}</td>
