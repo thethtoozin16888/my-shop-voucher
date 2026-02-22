@@ -67,7 +67,8 @@ th:nth-child(4), td.qty-col { text-align: center; }
     }
     body { background: white; padding: 0; }
     .container { box-shadow: none; border: none; width: 100%; max-width: none; }
-    button, .input-section, h1, p:first-of-type { display: none !important; }
+    .container > h1, .container > p { display: none !important; }
+    button, .input-section { display: none !important; }
     
     #voucherOutput { display: block !important; border: none; padding: 0; margin: 0; }
     .voucher-box { 
