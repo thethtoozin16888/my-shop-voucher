@@ -61,8 +61,28 @@ th:nth-child(4), td.qty-col { text-align: center; }
 .voucher-total { text-align: right; }
 
 @media print {
-    @page { margin: 10mm; }
+    @page { 
+        size: A4;
+        margin: 20mm; 
+    }
+    body { background: white; padding: 0; }
+    .container { box-shadow: none; border: none; width: 100%; max-width: none; }
+    button, .input-section, h1, p:first-of-type { display: none !important; }
+    
+    #voucherOutput { display: block !important; border: none; padding: 0; margin: 0; }
+    .voucher-box { 
+        width: 100%; 
+        border: none; 
+        padding: 0;
+        margin: 0;
+    }
+    
     body * { visibility: hidden; }
     #printableVoucher, #printableVoucher * { visibility: visible; }
-    #printableVoucher { position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; }
+    #printableVoucher { 
+        position: absolute; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+    }
 }
