@@ -43,7 +43,7 @@ function generateVoucher() {
         
         if (name) {
             tableBody += `
-                <tr class="italic">
+                <tr class="font-sans">
                     <td class="py-5 px-4">${name}</td>
                     <td class="py-5 px-4 text-right">${price.toLocaleString()} Ks</td>
                     <td class="py-5 px-4 text-right font-semibold text-slate-800">${subtotal.toLocaleString()} Ks</td>
