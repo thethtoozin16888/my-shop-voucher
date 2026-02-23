@@ -3,85 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ငါ့ဆိုင် (My Shop)</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>ငါ့ဆိုင် (My Shop) - Voucher System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; padding: 0 !important; }
+            .print-shadow { box-shadow: none !important; border: none !important; }
+            #voucherOutput { display: block !important; }
+        }
+        /* Custom Zebra Striping for Voucher */
+        .voucher-table tr:nth-child(even) { background-color: rgba(243, 244, 246, 0.5); }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <h1>ငါ့ဆိုင် (My Shop)</h1>
-        <p style="text-align: center; color: #666; margin-top: -15px;">Skincare & Tech Products</p>
-        
-        <div class="input-section">
-            <div class="form-group" style="display: flex; gap: 10px;">
-                <div style="flex: 2;">
-                    <label for="customerName">Customer Name:</label>
-                    <input type="text" id="customerName" placeholder="Enter customer name">
-                </div>
-                <div style="flex: 1;">
-                    <label for="customerPhone">Ph No:</label>
-                    <input type="text" id="customerPhone" placeholder="Enter phone number">
-                </div>
+<body class="bg-slate-50 min-h-screen p-4 md:p-10 font-sans">
+
+    <div class="max-w-4xl mx-auto">
+        <!-- Input Section (Hidden during print) -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-8 no-print">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-slate-800">ငါ့ဆိုင် (My Shop)</h1>
+                <p class="text-slate-500">Skincare & Tech Products - Admin Panel</p>
             </div>
-            <div class="form-group">
-                <label for="customerAddress">Address:</label>
-                <input type="text" id="customerAddress" placeholder="Enter delivery address">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Customer Name</label>
+                    <input type="text" id="customerName" placeholder="Enter customer name" class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Phone Number</label>
+                    <input type="text" id="customerPhone" placeholder="Enter phone number" class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Address</label>
+                    <input type="text" id="customerAddress" placeholder="Enter delivery address" class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all">
+                </div>
             </div>
             
-            <div class="items-section">
-                <h3>Items</h3>
-                <div id="itemsContainer">
-                    <div class="item-row">
-                        <input type="text" class="item-no" placeholder="No.">
-                        <input type="text" class="item-name" placeholder="Item name">
-                        <input type="text" class="item-color" placeholder="Color">
-                        <input type="number" class="item-qty" placeholder="Qty" value="1">
-                        <input type="number" class="item-price" placeholder="Price">
-                        <button class="remove-btn" onclick="removeItem(this)">×</button>
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-sm font-bold text-slate-700 uppercase tracking-widest">Items List</h3>
+                    <button onclick="addItem()" class="text-xs bg-emerald-50 text-emerald-600 font-bold px-3 py-1 rounded-full hover:bg-emerald-100 transition-colors">+ Add New Item</button>
+                </div>
+                
+                <div id="itemsContainer" class="space-y-2">
+                    <div class="item-row grid grid-cols-12 gap-2 items-center bg-slate-50 p-3 rounded-lg border border-slate-100">
+                        <input type="text" class="item-no col-span-1 text-center bg-white border border-slate-200 rounded py-1 text-sm" placeholder="No." value="1">
+                        <input type="text" class="item-name col-span-4 bg-white border border-slate-200 rounded py-1 px-2 text-sm" placeholder="Item Name">
+                        <input type="text" class="item-color col-span-2 bg-white border border-slate-200 rounded py-1 px-2 text-sm" placeholder="Color">
+                        <input type="number" class="item-qty col-span-1 text-center bg-white border border-slate-200 rounded py-1 text-sm" placeholder="Qty" value="1">
+                        <input type="number" class="item-price col-span-3 text-right bg-white border border-slate-200 rounded py-1 px-2 text-sm" placeholder="Price">
+                        <button class="col-span-1 text-rose-500 hover:bg-rose-50 rounded py-1 transition-colors" onclick="removeItem(this)">✕</button>
                     </div>
                 </div>
-                <button id="addItemBtn" onclick="addItem()">+ Add Item</button>
             </div>
             
-            <button id="generateBtn" onclick="generateVoucher()">Generate Voucher</button>
+            <button onclick="generateVoucher()" class="w-full bg-slate-800 text-white font-bold py-3 rounded-xl hover:bg-black transition-all shadow-lg shadow-slate-200">Generate Professional Voucher</button>
         </div>
 
-        <div id="voucherOutput" class="voucher-preview hidden">
-            <div id="printableVoucher" class="voucher-box">
-                <div class="voucher-header">
-                    <h2 style="margin-bottom: 5px;">ငါ့ဆိုင် (My Shop)</h2>
-                    <p style="font-size: 0.9em; margin-top: 0;">Skincare & Tech Products</p>
-                    <hr>
-                    <h3 style="margin-top: 10px;">RECEIPT</h3>
-                    <p id="vDate"></p>
-                </div>
-                <div class="voucher-info">
-                    <p><strong>Customer:</strong> <span id="vCustomer"></span></p>
-                    <p><strong>Ph No:</strong> <span id="vPhone"></span></p>
-                    <p><strong>Address:</strong> <span id="vAddress"></span></p>
-                </div>
-                <table id="vTable">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Item</th>
-                            <th>Color</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="vBody"></tbody>
-                </table>
-                <div class="voucher-total">
-                    <h3>Total: <span id="vTotal"></span> Ks</h3>
-                </div>
-                <div class="voucher-footer" style="text-align: center; margin-top: 30px; border-top: 1px solid #eee; padding-top: 10px;">
-                    <p><em>Thank You For Shopping With Us</em></p>
-                </div>
+        <!-- Voucher Output Section -->
+        <div id="voucherOutput" class="hidden">
+            <!-- Action Bar (No Print) -->
+            <div class="flex justify-end gap-2 mb-4 no-print">
+                <button onclick="window.print()" class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-lg text-sm font-bold hover:bg-slate-50 flex items-center gap-2">
+                    <span>🖨️</span> Print Voucher
+                </button>
             </div>
-            <button onclick="window.print()">Print Voucher</button>
+
+            <!-- Professional Voucher Box -->
+            <div id="printableVoucher" class="bg-white shadow-2xl rounded-xl overflow-hidden print-shadow">
+                
+                <!-- Purple Header -->
+                <div class="bg-purple-700 text-white p-8 flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center gap-4 mb-2">
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center text-2xl">
+                                🛍️
+                            </div>
+                            <div>
+                                <h1 class="text-4xl font-black tracking-tight uppercase">Invoice</h1>
+                                <p class="text-purple-200 text-xs font-bold tracking-[0.2em]" id="vDate"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <h2 class="text-2xl font-black">ငါ့ဆိုင် (My Shop)</h2>
+                        <p class="text-purple-100 text-sm">Skincare & Tech Products</p>
+                        <p class="text-purple-100 text-xs mt-2 opacity-80">Yangon, Myanmar</p>
+                    </div>
+                </div>
+
+                <div class="p-8">
+                    <!-- Billing Info -->
+                    <div class="flex justify-between mb-10">
+                        <div class="max-w-[60%]">
+                            <h3 class="text-slate-400 uppercase text-[10px] font-black tracking-widest mb-2">Bill To:</h3>
+                            <p class="font-black text-slate-800 text-xl mb-1" id="vCustomer"></p>
+                            <p class="text-slate-500 text-sm" id="vPhone"></p>
+                            <p class="text-slate-500 text-sm italic" id="vAddress"></p>
+                        </div>
+                        <div class="text-right">
+                            <h3 class="text-slate-400 uppercase text-[10px] font-black tracking-widest mb-2">Invoice Details:</h3>
+                            <div class="flex flex-col gap-1">
+                                <p class="text-sm"><span class="font-bold text-slate-400">ID:</span> <span class="font-mono text-slate-800" id="vInvoiceId">#0001</span></p>
+                                <p class="text-sm"><span class="font-bold text-slate-400">Status:</span> <span class="text-emerald-600 font-bold">Paid</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <table class="w-full text-left mb-10">
+                        <thead>
+                            <tr class="border-b-2 border-slate-100 text-slate-400 uppercase text-[10px] font-black tracking-widest">
+                                <th class="py-3 px-2">No.</th>
+                                <th class="py-3 px-2">Item Description</th>
+                                <th class="py-3 px-2 text-center">Qty</th>
+                                <th class="py-3 px-2 text-right">Unit Price</th>
+                                <th class="py-3 px-2 text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vBody" class="voucher-table text-slate-700">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+
+                    <!-- Professional Footer -->
+                    <div class="flex items-stretch mt-12 border-t border-slate-50 pt-8">
+                        <!-- Message Box -->
+                        <div class="flex-1 bg-purple-50 p-6 rounded-l-2xl border-l-4 border-purple-300 flex flex-col justify-center">
+                            <h4 class="text-purple-400 font-black text-[10px] uppercase tracking-widest mb-2">Customer Message</h4>
+                            <p class="text-purple-900 font-black italic text-xl">"Thank You For Shopping With Us"</p>
+                        </div>
+                        
+                        <!-- Total Box -->
+                        <div class="bg-purple-700 text-white p-8 rounded-r-2xl min-w-[280px] flex flex-col justify-center items-end shadow-xl shadow-purple-100">
+                            <span class="text-purple-300 uppercase text-[10px] font-black tracking-[0.2em] mb-1">Grand Total</span>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-4xl font-black" id="vTotal">0</span>
+                                <span class="text-sm font-bold text-purple-300">Ks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Accent -->
+                <div class="h-3 bg-gradient-to-r from-purple-800 to-purple-600"></div>
+            </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
