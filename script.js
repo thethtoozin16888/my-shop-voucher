@@ -3,13 +3,16 @@ function addItem() {
     const row = document.createElement('div');
     row.className = 'item-row flex flex-wrap md:flex-nowrap gap-4 items-end pb-4 border-b border-slate-50';
     row.innerHTML = `
-        <div class="flex-1 min-w-[200px]">
+        <div class="flex-1 min-w-[150px]">
             <input type="text" class="item-name w-full bg-transparent border-none py-1 text-sm focus:outline-none" placeholder="Item Description">
         </div>
         <div class="w-24">
+            <input type="text" class="item-color w-full bg-transparent border-none py-1 text-sm focus:outline-none" placeholder="Color/Size">
+        </div>
+        <div class="w-16">
             <input type="number" class="item-qty w-full text-center bg-slate-50 rounded py-1 text-xs" placeholder="Qty" value="1">
         </div>
-        <div class="w-32">
+        <div class="w-24">
             <input type="number" class="item-price w-full text-right bg-transparent border-none py-1 text-sm focus:outline-none font-mono" placeholder="Rate">
         </div>
         <button class="text-slate-300 hover:text-rose-500 p-1 transition-colors" onclick="removeItem(this)">✕</button>
@@ -29,6 +32,7 @@ function generateVoucher() {
     const address = document.getElementById('customerAddress').value;
     
     const itemNames = document.getElementsByClassName('item-name');
+    const itemColors = document.getElementsByClassName('item-color');
     const qtys = document.getElementsByClassName('item-qty');
     const prices = document.getElementsByClassName('item-price');
     
@@ -37,6 +41,7 @@ function generateVoucher() {
     
     for (let i = 0; i < itemNames.length; i++) {
         const name = itemNames[i].value;
+        const color = itemColors[i].value || '-';
         const qty = parseFloat(qtys[i].value) || 0;
         const price = parseFloat(prices[i].value) || 0;
         const subtotal = qty * price;
@@ -45,6 +50,8 @@ function generateVoucher() {
             tableBody += `
                 <tr class="font-sans">
                     <td class="py-5 px-4">${name}</td>
+                    <td class="py-5 px-4 text-center">${color}</td>
+                    <td class="py-5 px-4 text-center">${qty}</td>
                     <td class="py-5 px-4 text-right">${price.toLocaleString()} Ks</td>
                     <td class="py-5 px-4 text-right font-semibold text-slate-800">${subtotal.toLocaleString()} Ks</td>
                 </tr>

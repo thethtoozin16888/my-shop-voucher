@@ -70,13 +70,16 @@
                 
                 <div id="itemsContainer" class="space-y-3">
                     <div class="item-row flex flex-wrap md:flex-nowrap gap-4 items-end pb-4 border-b border-slate-50">
-                        <div class="flex-1 min-w-[200px]">
+                        <div class="flex-1 min-w-[150px]">
                             <input type="text" class="item-name w-full bg-transparent border-none py-1 text-sm focus:outline-none" placeholder="Item Description">
                         </div>
                         <div class="w-24">
+                            <input type="text" class="item-color w-full bg-transparent border-none py-1 text-sm focus:outline-none" placeholder="Color/Size">
+                        </div>
+                        <div class="w-16">
                             <input type="number" class="item-qty w-full text-center bg-slate-50 rounded py-1 text-xs" placeholder="Qty" value="1">
                         </div>
-                        <div class="w-32">
+                        <div class="w-24">
                             <input type="number" class="item-price w-full text-right bg-transparent border-none py-1 text-sm focus:outline-none font-mono" placeholder="Rate">
                         </div>
                         <button class="text-slate-300 hover:text-rose-500 p-1 transition-colors" onclick="removeItem(this)">✕</button>
@@ -136,6 +139,8 @@
                     <thead>
                         <tr class="uppercase tracking-widest text-xs font-bold text-slate-500">
                             <th class="py-4 px-4">Description</th>
+                            <th class="py-4 px-4 text-center">Color/Size</th>
+                            <th class="py-4 px-4 text-center">Qty</th>
                             <th class="py-4 px-4 text-right">Rate</th>
                             <th class="py-4 px-4 text-right">Subtotal</th>
                         </tr>
@@ -149,13 +154,13 @@
                 <div class="flex justify-end mb-24">
                     <div class="text-right">
                         <p class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-1">Total:</p>
-                        <p class="text-xl font-light text-slate-800 font-sans"><span id="vTotal">0</span> Ks</p>
+                        <p class="text-xl font-bold text-slate-800 font-sans"><span id="vTotal">0</span> Ks</p>
                     </div>
                 </div>
 
                 <!-- Large Footer Message -->
                 <div class="text-center border-t border-rose-50 pt-16">
-                    <p class="text-3xl md:text-4xl font-black italic text-slate-900 tracking-tight">Thank You For Shopping With Us.</p>
+                    <p class="text-xl md:text-2xl font-black italic text-slate-900 tracking-tight">Thank You For Shopping With Us.</p>
                 </div>
             </div>
 
